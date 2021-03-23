@@ -1,0 +1,13 @@
+/.gradle/
+/.idea/
+/build/
+/out/
+/project/project
+target
+test-output/
+/.sbtopts
+/project/.sbt
+test-output/
+/.bloop
+/.metals
+/.bsp
