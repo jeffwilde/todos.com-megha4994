@@ -3,9 +3,12 @@ package com.todos;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Optional;
+import java.util.UUID;
 
-public class Todo {
+public class
+Todo {
 
+  private UUID uuid;
   private final String title;
   private final boolean completed;
   private final Long order;
@@ -17,6 +20,13 @@ public class Todo {
     this.title = title;
     this.completed = completed;
     this.order = order;
+  }
+
+  public void setId(UUID id) {
+    this.uuid = id;
+  }
+  public UUID getId() {
+    return uuid;
   }
 
   public String getTitle() {
