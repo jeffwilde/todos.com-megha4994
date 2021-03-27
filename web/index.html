@@ -27,6 +27,11 @@
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label><%- title %></label>
+				<div class="tags">
+					<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
+						<div class="swatch <%= item %>"></div>
+					<% } %>
+				</div>
 				<button class="destroy"></button>
 			</div>
 			<input class="edit" value="<%- title %>">

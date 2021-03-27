@@ -84,4 +84,56 @@
   font-weight: 200;
 }
 
+/* for the tags */
+#todo-list li label {
+  padding-right: 180px;
+}
+
+.tags {
+  display: none;
+  position: absolute;
+  right: 60px;
+  top: 17px;
+}
+
+#todo-list li:hover .tags {
+  display: inline-block;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius:    10px;
+  border-radius:         10px;
+  display: inline-block;
+  margin: 0;
+}
+
+.swatch.red {
+  background-color: #f44336;
+}
+
+.swatch.orange {
+  background-color: #ff9822;
+}
+
+.swatch.yellow {
+  background-color: #ffc107;
+}
+
+.swatch.green {
+  background-color: #4caf50;
+}
+
+.swatch.blue {
+  background-color: #2196f3;
+}
+
+.swatch.purple {
+  background-color: #9c27b0;
+}
+
+
+
 
