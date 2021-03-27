@@ -85,19 +85,32 @@
 }
 
 /* for the tags */
-#todo-list li label {
+#todo-list li .title {
   padding-right: 180px;
 }
 
 .tags {
-  display: none;
   position: absolute;
   right: 60px;
-  top: 17px;
+  top: 27px;
+  display: inline-flex;
 }
 
-#todo-list li:hover .tags {
-  display: inline-block;
+#todo-list li label.swatch-container {
+  display: inline-flex;
+  padding: 0;
+  margin-left: 0;
+  white-space: normal;
+  word-break: normal;
+  line-height: 1;
+}
+
+.swatch-container input[type="checkbox"] {
+  display: none;
+}
+
+.swatch-container input[type="checkbox"]:checked + .swatch {
+  opacity: 1;
 }
 
 .swatch {
@@ -107,7 +120,8 @@
   -moz-border-radius:    10px;
   border-radius:         10px;
   display: inline-block;
-  margin: 0;
+  opacity: 0.5;
+  margin: 0 2.5px;
 }
 
 .swatch.red {
@@ -132,6 +146,27 @@
 
 .swatch.purple {
   background-color: #9c27b0;
+}
+
+
+/* state management for showing and hiding swatches */
+
+#todo-list li .tags .swatch-container input[type="checkbox"]:not(:checked) + .swatch {
+  opacity: 0;
+  width: 0;
+  transition: all 0.3s;
+  margin: 0 -2.5px;
+}
+
+#todo-list li:hover .tags .swatch-container input[type="checkbox"] + .swatch {
+  opacity: 0.5;
+  width: 10px;
+  margin: 0 2.5px;
+}
+
+#todo-list li:hover .tags .swatch-container input[type="checkbox"]:checked + .swatch,
+#todo-list li .tags .swatch-container input[type="checkbox"]:checked + .swatch {
+  opacity: 1;
 }
 
 

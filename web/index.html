@@ -26,10 +26,13 @@
 		<script type="text/template" id="item-template">
 			<div class="view">
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-				<label><%- title %></label>
+				<label class="title"><%- title %></label>
 				<div class="tags">
 					<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
-						<div class="swatch <%= item %>"></div>
+						<label class="swatch-container">
+							<input type="checkbox" name="tagColor" value="<%= item %>" />
+							<div class="swatch <%= item %>"></div>
+						</label>
 					<% } %>
 				</div>
 				<button class="destroy"></button>
