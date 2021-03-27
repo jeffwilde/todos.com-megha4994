@@ -22,7 +22,8 @@ var app = app || {};
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
-			'blur .edit': 'close'
+			'blur .edit': 'close',
+			'click .swatch-checkbox': 'updateTags'
 		},
 
 		// The TodoView listens for changes to its model, re-rendering. Since
@@ -52,6 +53,7 @@ var app = app || {};
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');
+			this.$checkbox = this.$('.swatch-checkbox')
 			return this;
 		},
 
@@ -129,6 +131,21 @@ var app = app || {};
 		// Remove the item, destroy the model from *localStorage* and delete its view.
 		clear: function () {
 			this.model.destroy();
+		},
+
+		// Clicked tags result in changes to what gets saved
+		updateTags: function () {
+			console.log("DEBUG", this)
+
+			var checkedTags = [];
+
+			this.$checkbox.each(function( i ) {
+				if(this.checked) {
+					checkedTags.push(this.value)
+				}
+			});
+			
+			this.model.save({ tags: checkedTags },{patch:true});
 		}
 	});
 })(jQuery);

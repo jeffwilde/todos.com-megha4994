@@ -30,7 +30,7 @@
 				<div class="tags">
 					<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
 						<label class="swatch-container">
-							<input type="checkbox" name="tagColor" value="<%= item %>" />
+							<input type="checkbox" class="swatch-checkbox" name="tagColor" value="<%= item %>" <%= tags.indexOf(item) >= 0 ? 'checked' : '' %> />
 							<div class="swatch <%= item %>"></div>
 						</label>
 					<% } %>
