@@ -58,18 +58,17 @@ var app = app || {};
 		},
 
 		toggleVisible: function () {
-			console.log("DEBUG", this);
 			this.$el.toggleClass('hidden', this.isHidden());
 		},
 
 		isHidden: function () {
+			var tags = this.model.get('tags');
 			var isCompleted = this.model.get('completed');
 			return (// hidden cases only
 				(!isCompleted && app.TodoFilter === 'completed') ||
 				(isCompleted && app.TodoFilter === 'active')
-			);
+			) || (app.TodoTag !== "" && tags.indexOf(app.TodoTag) === -1);
 		},
-
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
 			this.model.toggle();
@@ -136,7 +135,6 @@ var app = app || {};
 
 		// Clicked tags result in changes to what gets saved
 		updateTags: function () {
-			console.log("DEBUG", this)
 
 			var checkedTags = [];
 

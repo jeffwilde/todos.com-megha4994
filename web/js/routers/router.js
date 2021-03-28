@@ -16,8 +16,6 @@ var app = app || {};
 			app.TodoFilter = param || '';
 			app.TodoTag = color || '';
 
-			console.log("DEBUG", param, color)
-
 			// Trigger a collection filter event, causing hiding/unhiding
 			// of Todo view items
 			app.todos.trigger('filter');
