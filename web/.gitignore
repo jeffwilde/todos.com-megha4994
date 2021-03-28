@@ -3,3 +3,4 @@
 /js/vendor
 /css/vendor
 *.log
+/dist

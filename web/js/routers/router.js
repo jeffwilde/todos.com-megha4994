@@ -15,6 +15,8 @@ var app = app || {};
 			// Set the current filter to be used
 			app.TodoFilter = param || '';
 
+			console.log("DEBUG", param)
+
 			// Trigger a collection filter event, causing hiding/unhiding
 			// of Todo view items
 			app.todos.trigger('filter');

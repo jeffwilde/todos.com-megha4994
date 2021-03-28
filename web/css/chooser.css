@@ -120,8 +120,9 @@
   -moz-border-radius:    10px;
   border-radius:         10px;
   display: inline-block;
-  opacity: 0.5;
+  opacity: 0.33;
   margin: 0 2.5px;
+  cursor: pointer;
 }
 
 .swatch.red {
