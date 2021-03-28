@@ -59,7 +59,8 @@ var app = app || {};
 				this.$footer.html(this.statsTemplate({
 					completed: completed,
 					remaining: remaining,
-					currentFilter: app.TodoFilter
+					currentFilter: app.TodoFilter,
+					currentTag: app.TodoTag
 				}));
 
 				this.$('#filters li a')

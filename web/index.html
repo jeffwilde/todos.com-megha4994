@@ -54,11 +54,11 @@
 			</ul>
 			<ul id="color-filters">
 				<li>
-					<a class="swatch all" href="#/<%= currentFilter %>"></a>
+					<a class="swatch all <%= currentTag === '' ? 'selected' : ''%>" href="#/<%= currentFilter %>"></a>
 				</li>
 				<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
 					<li>
-						<a class="swatch <%= item %>" href="#/<%= currentFilter %>/<%= item %>"></a>
+						<a class="swatch <%= item %> <%= currentTag === item ? 'selected' : ''%>" href="#/<%= currentFilter %>/<%= item %>"></a>
 					</li>
 				<% } %>
 			</ul>

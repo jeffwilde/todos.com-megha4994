@@ -190,7 +190,7 @@
   display: inline;
 }
 
-#color-filters li .swatch {
+#color-filters li .swatch.selected {
   opacity: 1;
 }
 
