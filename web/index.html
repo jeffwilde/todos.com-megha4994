@@ -52,6 +52,13 @@
 					<a href="#/completed">Completed</a>
 				</li>
 			</ul>
+			<ul id="color-filters">
+				<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
+					<li>
+						<a class="swatch <%= item %>" href="#/<%= currentFilter %>/<%= item %>"></a>
+					</li>
+				<% } %>
+			</ul>
 			<% if (completed) { %>
 			<button id="clear-completed">Clear completed (<%= completed %>)</button>
 			<% } %>

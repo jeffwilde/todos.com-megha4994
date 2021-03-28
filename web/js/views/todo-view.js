@@ -58,6 +58,7 @@ var app = app || {};
 		},
 
 		toggleVisible: function () {
+			console.log("DEBUG", this);
 			this.$el.toggleClass('hidden', this.isHidden());
 		},
 

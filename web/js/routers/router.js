@@ -8,14 +8,15 @@ var app = app || {};
 	// ----------
 	app.TodoRouter = Backbone.Router.extend({
 		routes: {
-			'*filter': 'setFilter'
+			'*filter(/:color)': 'setFilter'
 		},
 
-		setFilter: function (param) {
+		setFilter: function (param, color) {
 			// Set the current filter to be used
 			app.TodoFilter = param || '';
+			app.TodoTag = color || '';
 
-			console.log("DEBUG", param)
+			console.log("DEBUG", param, color)
 
 			// Trigger a collection filter event, causing hiding/unhiding
 			// of Todo view items
