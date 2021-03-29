@@ -136,9 +136,7 @@ var app = app || {};
 		// Clicked tags result in changes to what gets saved
 		updateTags: function () {
 
-			var checkedTags = [];
-
-			this.$checkbox.each(function( i ) {
+			var checkedTags = this.$checkbox.map(function() {
 				if(this.checked) {
 					checkedTags.push(this.value)
 				}
