@@ -28,7 +28,7 @@
 				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
 				<label class="title"><%- title %></label>
 				<div class="tags">
-					<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
+					<% for(var item of COLORS ) {  %>
 						<label class="swatch-container">
 							<input type="checkbox" class="swatch-checkbox" name="tagColor" value="<%= item %>" <%= tags.indexOf(item) >= 0 ? 'checked' : '' %> />
 							<div class="swatch <%= item %>"></div>
@@ -56,7 +56,7 @@
 				<li>
 					<a class="swatch all <%= currentTag === '' ? 'selected' : ''%>" href="#/<%= currentFilter %>"></a>
 				</li>
-				<% for(var item of ["red", "orange", "yellow", "green", "blue"] ) {  %>
+				<% for(var item of COLORS ) {  %>
 					<li>
 						<a class="swatch <%= item %> <%= currentTag === item ? 'selected' : ''%>" href="#/<%= currentFilter %>/<%= item %>"></a>
 					</li>
