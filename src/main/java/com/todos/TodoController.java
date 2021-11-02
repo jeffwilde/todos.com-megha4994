@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +34,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/todos")
 public class TodoController {
 
-  private Map<UUID, Resource<Todo>> mapTodos = new HashMap<>();
+  private Database database = new Database();
 
   @RequestMapping(method = GET)
   public Collection<Resource<Todo>> listAll() {
-    return mapTodos.values();
+    return database.all().stream().map(todo -> new Resource<>(todo, getHref(todo.getId()))).collect(Collectors.toList());
   }
 
   @RequestMapping(method = GET, value = "/{todo-id}")
@@ -48,31 +50,35 @@ public class TodoController {
   public Resource<Todo> add(@RequestBody Todo todo) {
     var id = UUID.randomUUID();
     Resource<Todo> resource = new Resource<>(todo, getHref(id));
-    mapTodos.put(id, resource);
+    database.put(id, todo);
     return resource;
   }
 
   @RequestMapping(method = DELETE)
   public void deleteAll() {
-    mapTodos.clear();
+    database.clear();
   }
 
   @RequestMapping(method = DELETE, value = "/{todo-id}")
   public void delete(@PathVariable("todo-id") UUID id) {
-    mapTodos.remove(id);
+    database.remove(id);
   }
 
   @RequestMapping(method = PATCH, value = "/{todo-id}")
   public HttpEntity<Resource<Todo>> update(@PathVariable("todo-id") UUID id,
                                            @RequestBody Todo updatedTodo) {
-    mapTodos.computeIfPresent(id, (key, todoResource) ->
-        new Resource<>(todoResource.getContent().merge(updatedTodo), getHref(key)));
+    Todo found = database.get(id);
+    if (found != null) {
+      Todo updated = found.merge(updatedTodo);
+      database.remove(id);
+      database.put(id, updated);
+    }
     return respond(id);
   }
 
   private HttpEntity<Resource<Todo>> respond(UUID todoId) {
-    return Optional.ofNullable(mapTodos.get(todoId))
-        .map(todo -> new ResponseEntity<>(todo, HttpStatus.OK))
+    return Optional.ofNullable(database.get(todoId))
+        .map(todo -> new ResponseEntity<>(new Resource<>(todo, getHref(todo.getId())), HttpStatus.OK))
         .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
